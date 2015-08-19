@@ -66,6 +66,26 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         addChild(bouncer)
     }
     
+    func didBeginContact(contact: SKPhysicsContact) {
+        if contact.bodyA.node!.name == "ball" {
+            collisionBetweenBall(contact.bodyA.node!, object: contact.bodyB.node!)
+        } else if contact.bodyB.node!.name == "ball" {
+            collisionBetweenBall(contact.bodyB.node!, object: contact.bodyA.node!)
+        }
+    }
+    
+    func collisionBetweenBall(ball: SKNode, object: SKNode) {
+        if object.name == "good" {
+            destroyBall(ball)
+        } else if object.name == "bad" {
+            destroyBall(ball)
+        }
+    }
+    
+    func destroyBall(ball: SKNode) {
+        ball.removeFromParent()
+    }
+    
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         if let touch = touches.first as? UITouch {
             let location = touch.locationInNode(self)
