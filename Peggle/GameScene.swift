@@ -32,15 +32,24 @@ class GameScene: SKScene {
     
     func makeSlotAt(position: CGPoint, isGood: Bool) {
         var slotBase: SKSpriteNode
+        var slotGlow: SKSpriteNode
         
         if isGood {
             slotBase = SKSpriteNode(imageNamed: "slotBaseGood")
+            slotGlow = SKSpriteNode(imageNamed: "slotGlowGood")
         } else {
             slotBase = SKSpriteNode(imageNamed: "slotBaseBad")
+            slotGlow = SKSpriteNode(imageNamed: "slotGlowBad")
         }
         
         slotBase.position = position
+        slotGlow.position = position
         addChild(slotBase)
+        addChild(slotGlow)
+        
+        let spin = SKAction.rotateByAngle(CGFloat(M_PI_2), duration: 10)
+        let spinForever = SKAction.repeatActionForever(spin)
+        slotGlow.runAction(spinForever)
     }
     
     func makeBouncerAt(position: CGPoint) {
