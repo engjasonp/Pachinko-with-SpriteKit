@@ -15,15 +15,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         background.blendMode = .Replace
         background.zPosition = -1
         addChild(background)
+        
         physicsBody = SKPhysicsBody(edgeLoopFromRect: frame)
         physicsWorld.contactDelegate = self
         
         makeSlotAt(CGPoint(x: 128, y: 0), isGood: true)
         makeSlotAt(CGPoint(x: 384, y: 0), isGood: false)
         makeSlotAt(CGPoint(x: 640, y: 0), isGood: true)
-        makeSlotAt(CGPoint(x: 896, y:0), isGood: false)
+        makeSlotAt(CGPoint(x: 896, y: 0), isGood: false)
         
-        let bouncer = SKSpriteNode(imageNamed: "bouncer")
         makeBouncerAt(CGPoint(x: 0, y: 0))
         makeBouncerAt(CGPoint(x: 256, y: 0))
         makeBouncerAt(CGPoint(x: 512, y: 0))
@@ -47,11 +47,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         slotBase.position = position
         slotGlow.position = position
+        
         slotBase.physicsBody = SKPhysicsBody(rectangleOfSize: slotBase.size)
-        slotBase.physicsBody!.dynamic = true
+        slotBase.physicsBody!.contactTestBitMask = slotBase.physicsBody!.collisionBitMask
+        slotBase.physicsBody!.dynamic = false
+        
         addChild(slotBase)
         addChild(slotGlow)
-        
+
         let spin = SKAction.rotateByAngle(CGFloat(M_PI_2), duration: 10)
         let spinForever = SKAction.repeatActionForever(spin)
         slotGlow.runAction(spinForever)
@@ -61,7 +64,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let bouncer = SKSpriteNode(imageNamed: "bouncer")
         bouncer.position = position
         bouncer.physicsBody = SKPhysicsBody(circleOfRadius: bouncer.size.width / 2.0)
-        bouncer.physicsBody!.contactTestBitMask = bouncer.physicsBody!.collisionBitMask
         bouncer.physicsBody!.dynamic = false
         addChild(bouncer)
     }
@@ -90,12 +92,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if let touch = touches.first as? UITouch {
             let location = touch.locationInNode(self)
             let ball = SKSpriteNode(imageNamed: "ballRed")
+
+            ball.name = "ball"
+            ball.position = location
+            addChild(ball)
+            
             ball.physicsBody = SKPhysicsBody(circleOfRadius: ball.size.width / 2.0)
             ball.physicsBody!.contactTestBitMask = ball.physicsBody!.collisionBitMask
             ball.physicsBody!.restitution = 0.4
-            ball.position = location
-            ball.name = "ball"
-            addChild(ball)
+            
         }
     }
    
