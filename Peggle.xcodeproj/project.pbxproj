@@ -43,6 +43,7 @@
 		CA6D840F1B84085100F5C256 /* slotGlowGood.png in Resources */ = {isa = PBXBuildFile; fileRef = CA6D83F31B84085100F5C256 /* slotGlowGood.png */; };
 		CA6D84101B84085100F5C256 /* slotGlowGood@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA6D83F41B84085100F5C256 /* slotGlowGood@2x.png */; };
 		CA6D84111B84085100F5C256 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = CA6D83F51B84085100F5C256 /* spark.png */; };
+		CA6D84131B858B2300F5C256 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6D84121B858B2300F5C256 /* Helper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,6 +97,7 @@
 		CA6D83F31B84085100F5C256 /* slotGlowGood.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = slotGlowGood.png; path = Content/slotGlowGood.png; sourceTree = "<group>"; };
 		CA6D83F41B84085100F5C256 /* slotGlowGood@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "slotGlowGood@2x.png"; path = "Content/slotGlowGood@2x.png"; sourceTree = "<group>"; };
 		CA6D83F51B84085100F5C256 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = spark.png; path = Content/spark.png; sourceTree = "<group>"; };
+		CA6D84121B858B2300F5C256 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +143,7 @@
 				CA6D83B71B84058D00F5C256 /* GameScene.sks */,
 				CA6D83B91B84058D00F5C256 /* GameScene.swift */,
 				CA6D83BB1B84058D00F5C256 /* GameViewController.swift */,
+				CA6D84121B858B2300F5C256 /* Helper.swift */,
 				CA6D83BD1B84058D00F5C256 /* Main.storyboard */,
 				CA6D83C01B84058D00F5C256 /* Images.xcassets */,
 				CA6D83C21B84058D00F5C256 /* LaunchScreen.xib */,
@@ -334,6 +337,7 @@
 				CA6D83BA1B84058D00F5C256 /* GameScene.swift in Sources */,
 				CA6D83BC1B84058D00F5C256 /* GameViewController.swift in Sources */,
 				CA6D83B61B84058D00F5C256 /* AppDelegate.swift in Sources */,
+				CA6D84131B858B2300F5C256 /* Helper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -531,6 +535,7 @@
 				CA6D83D51B84058D00F5C256 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CA6D83D61B84058D00F5C256 /* Build configuration list for PBXNativeTarget "PeggleTests" */ = {
 			isa = XCConfigurationList;
@@ -539,6 +544,7 @@
 				CA6D83D81B84058D00F5C256 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
