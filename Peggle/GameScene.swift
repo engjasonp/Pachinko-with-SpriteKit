@@ -119,6 +119,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func destroyBall(ball: SKNode) {
+        if let myParticlePath = NSBundle.mainBundle().pathForResource("FireParticles", ofType: "sks") {
+            let fireParticles = NSKeyedUnarchiver.unarchiveObjectWithFile(myParticlePath) as! SKEmitterNode
+            fireParticles.position = ball.position
+            addChild(fireParticles)
+        }
+        
         ball.removeFromParent()
     }
     
@@ -142,15 +148,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     
                     addChild(box)
                 } else {
-                    let ball = SKSpriteNode(imageNamed: "ballRed")
-                    
-                    ball.name = "ball"
-                    ball.position = location
-                    addChild(ball)
-                    
-                    ball.physicsBody = SKPhysicsBody(circleOfRadius: ball.size.width / 2.0)
-                    ball.physicsBody!.contactTestBitMask = ball.physicsBody!.collisionBitMask
-                    ball.physicsBody!.restitution = 0.4
+                let ball = SKSpriteNode(imageNamed: "ballRed")
+
+                ball.name = "ball"
+                ball.position = CGPoint(x: location.x, y: 700)
+                addChild(ball)
+                
+                ball.physicsBody = SKPhysicsBody(circleOfRadius: ball.size.width / 2.0)
+                ball.physicsBody!.contactTestBitMask = ball.physicsBody!.collisionBitMask
+                ball.physicsBody!.restitution = 0.4
                 }
             }
             
