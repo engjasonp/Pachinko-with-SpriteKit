@@ -30,6 +30,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
+    var randomBallColors = ["ballBlue", "ballCyan", "ballGreen", "ballGrey", "ballPurple", "ballRed", "ballYellow"]
+    
     override func didMoveToView(view: SKView) {
         let background = SKSpriteNode(imageNamed: "background.jpg")
         background.position = CGPoint(x: 512, y: 384)
@@ -148,21 +150,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     
                     addChild(box)
                 } else {
-                let ball = SKSpriteNode(imageNamed: "ballRed")
-
-                ball.name = "ball"
-                ball.position = CGPoint(x: location.x, y: 700)
-                addChild(ball)
-                
-                ball.physicsBody = SKPhysicsBody(circleOfRadius: ball.size.width / 2.0)
-                ball.physicsBody!.contactTestBitMask = ball.physicsBody!.collisionBitMask
-                ball.physicsBody!.restitution = 0.4
+                    let randomBallColor = randomBallColors[RandomInt(min: 0, max: 6)]
+                    let ball = SKSpriteNode(imageNamed: "\(randomBallColor)")
+                    
+                    ball.name = "ball"
+                    ball.position = CGPoint(x: location.x, y: 700)
+                    addChild(ball)
+                    
+                    ball.physicsBody = SKPhysicsBody(circleOfRadius: ball.size.width / 2.0)
+                    ball.physicsBody!.contactTestBitMask = ball.physicsBody!.collisionBitMask
+                    ball.physicsBody!.restitution = 0.4
                 }
             }
             
         }
     }
-   
+
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
     }
