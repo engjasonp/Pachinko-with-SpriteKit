@@ -139,16 +139,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if contains(objects, editLabel) {
                 editingMode = !editingMode
             } else {
+                let size = CGSize(width: RandomInt(min: 60, max: 128), height: 16)
+                let box = SKSpriteNode(color: RandomColor(), size: size)
+                
                 if editingMode {
-                    let size = CGSize(width: RandomInt(min: 16, max: 128), height: 16)
-                    let box = SKSpriteNode(color: RandomColor(), size: size)
-                    box.zRotation = RandomCGFloat(min: 0, max: 3)
-                    box.position = location
-                    
-                    box.physicsBody = SKPhysicsBody(rectangleOfSize: box.size)
-                    box.physicsBody!.dynamic = false
-                    
-                    addChild(box)
+                    if contains(objects, nodeAtPoint(location)) {
+                        if nodeAtPoint(location).name == "obstacle" {
+                            nodeAtPoint(location).removeFromParent()
+                        } else {
+                            box.name = "obstacle"
+                            box.zRotation = RandomCGFloat(min: 0, max: 3)
+                            box.position = location
+                            
+                            box.physicsBody = SKPhysicsBody(rectangleOfSize: box.size)
+                            box.physicsBody!.dynamic = false
+                            
+                            addChild(box)
+                        }
+                    }
                 } else {
                     let randomBallColor = randomBallColors[RandomInt(min: 0, max: 6)]
                     let ball = SKSpriteNode(imageNamed: "\(randomBallColor)")
@@ -165,7 +173,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
         }
     }
-
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
     }
